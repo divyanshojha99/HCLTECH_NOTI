@@ -36,14 +36,11 @@ if st.button("Check for Notifications"):
     message = fetch_latest_notification()
     st.write("### Latest Notification:")
     st.write(message)
-    # Append to history if it's a new message
-    if not st.session_state.notification_history or st.session_state.notification_history[-1] != message:
-        st.session_state.notification_history.append(message)
  
 # Auto-refresh notifications using a checkbox toggle
 if st.checkbox("Enable Auto-Refresh", key="auto_refresh_checkbox"):
     # This component forces a rerun every 2000 ms (2 seconds)
-    st_autorefresh(interval=2000, limit=100, key="auto_refresh")
+    time.sleep(2)
     new_message = fetch_latest_notification()
     # Only append if it's different from the last message in history
     if not st.session_state.notification_history or st.session_state.notification_history[-1] != new_message:
